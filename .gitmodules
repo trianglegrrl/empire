@@ -1,0 +1,3 @@
+[submodule "my-recipes/cookbooks/wordpress"]
+	path = my-recipes/cookbooks/wordpress
+	url = https://github.com/opscode-cookbooks/wordpress.git
