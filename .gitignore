@@ -1,4 +1,5 @@
 .htaccess
+
 wp-config.php
 wp-content/uploads/
 wp-content/blogs.dir/
@@ -13,5 +14,5 @@ wp-content/backups/
 sitemap.xml
 sitemap.xml.gz
 my-recipes/cookbooks/*
-/tmp
+my-recipes/tmp/*
 .vagrant

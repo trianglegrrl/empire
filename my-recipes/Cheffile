@@ -1,0 +1,15 @@
+site "http://community.opscode.com/api/v1"
+
+cookbook "ntp"
+cookbook "timezone", "0.0.1"
+
+cookbook "apache2",
+    :git => "http://github.com/opscode-cookbooks/apache2"
+cookbook "mysql",
+    :git => "http://github.com/opscode-cookbooks/mysql"
+cookbook "php",
+    :git => "http://github.com/opscode-cookbooks/php"
+cookbook "openssl",
+    :git => "http://github.com/opscode-cookbooks/openssl"
+cookbook "wordpress",
+    :git => "http://github.com/opscode-cookbooks/wordpress"

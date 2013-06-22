@@ -80,7 +80,14 @@ Vagrant.configure("2") do |config|
     chef.cookbooks_path = "my-recipes/cookbooks"
     chef.roles_path = "my-recipes/roles"
     chef.data_bags_path = "my-recipes/data_bags"
-  #  chef.add_recipe "wordpress"
+    chef.add_recipe "wordpress"
+    chef.json = {
+      "mysql" => {
+        "server_root_password" => "buttfor",
+        "server_repl_password" => "buttfor",
+        "server_debian_password" => "buttfor"
+      }
+    }
   #  chef.add_role "web"
 
   # You may also specify custom JSON attributes:
