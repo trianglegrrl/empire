@@ -16,3 +16,4 @@ sitemap.xml.gz
 my-recipes/cookbooks/*
 my-recipes/tmp/*
 .vagrant
+my-recipes/Cheffile.lock
