@@ -1,0 +1,311 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Esatto Responsive CSS v1.0 - Designed and built by Angelo Mazzilli */
+/* www.angelomazzilli.com */
+
+/* Desktop layout */
+@media (min-width: 1200px) {
+#home .logo {
+	margin-left: -585px;
+}
+}
+
+/* Small Desktop layout */
+@media (min-width: 980px) and (max-width: 1199px) {
+#home .logo {
+	margin-left: -470px;
+}
+select {
+	width: 220px;
+}
+#contact .contact-form input[type=text] {
+	width: 210px;
+}
+#contact .contact-form textarea {
+	min-width: 440px;
+	width: 440px;
+	max-width: 440px;
+}
+}
+
+/* Tablet layout */
+@media (min-width: 768px) and (max-width: 979px) {
+body {
+	padding: 0 !important;
+}
+#home .logo {
+	margin-left: -360px;
+}
+select {
+	width: 165px;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+	margin: 0;
+	position: fixed;
+}
+.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+	padding: 0 20px;
+}
+.navbar-inner .brand {
+	margin: 0;
+	padding: 0;
+	display: block;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 50px;
+	color: #FFF;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.navbar-fixed-top .navbar-inner .sosa, .navbar-fixed-bottom .navbar-inner .sosa {
+	margin: 15px 10px 15px 0;
+	float: left;
+}
+.navbar .nav li.home-icon a {
+	padding: 0 10px;
+}
+.navbar .nav li.home-icon a span {
+	float: none;
+}
+.navbar .nav li a {
+	font-weight: 300;
+}
+.navbar .nav li a:hover {
+	background: rgba(255,255,255,0.1);
+}
+.navbar .nav.nav-divider {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+.navbar .nav.nav-divider-right {
+	margin: 0 0 20px 0;
+	padding: 0;
+	border: none;
+}
+.navbar .nav li a i, .navbar .nav li ul, .navbar .social-nav, .navbar form {
+	display: none;
+}
+.work-box .sosa, .work-box p {
+	display: none;
+}
+#contact .contact-form input[type=text] {
+	width: 156px;
+}
+#contact .contact-form textarea {
+	min-width: 332px;
+	width: 332px;
+	max-width: 332px;
+}
+}
+
+/* Mobile landscape layout */
+@media (min-width: 480px) and (max-width: 767px) {
+body {
+	padding: 0 !important;
+}
+#home .logo {
+	margin-left: -220px;
+}
+select {
+	margin: auto;
+	width: 460px;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+	margin: 0;
+	position: fixed;
+}
+.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+	padding: 0 20px;
+}
+.navbar-inner .brand {
+	margin: 0;
+	padding: 0;
+	display: block;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 50px;
+	color: #FFF;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.navbar-fixed-top .navbar-inner .sosa, .navbar-fixed-bottom .navbar-inner .sosa {
+	margin: 15px 10px 15px 0;
+	float: left;
+}
+.navbar .nav li.home-icon a {
+	padding: 0 10px;
+}
+.navbar .nav li.home-icon a span {
+	float: none;
+}
+.navbar .nav li a {
+	font-weight: 300;
+}
+.navbar .nav li a:hover {
+	background: rgba(255,255,255,0.1);
+}
+.navbar .nav.nav-divider {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+.navbar .nav.nav-divider-right {
+	margin: 0 0 20px 0;
+	padding: 0;
+	border: none;
+}
+.navbar .nav li a i, .navbar .nav li ul, .navbar .social-nav, .navbar form {
+	display: none;
+}
+.thumbnail {
+	margin-bottom: 40px;
+}
+.thumbnail.hover:hover {
+	margin: 0 0 40px 0;
+	padding: 0;
+	background: inherit
+}
+.thumbnail.hover img {
+	margin: 0px auto 10px;
+	border: none !important;
+}
+.work-box .sosa, .work-box p {
+	display: none;
+}
+.sidebar, .sidebar h4 {
+	text-align: center;
+}
+#contact h5 {
+	text-align: center;
+}
+#contact address p {
+	margin: auto;
+	width: 420px;
+}
+#contact .contact-form legend {
+	text-align: center;
+}
+#contact .contact-form input[type=text] {
+	margin: 0 auto 10px;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	float: none;
+}
+#contact .contact-form textarea {
+	margin: 0 auto 10px;
+	min-width: 400px;
+	width: 400px;
+	max-width: 400px;
+	float: none;
+}
+#contact .contact-form button {
+	margin: auto;
+	float: none;
+}
+}
+
+/* Mobile layout */
+@media (max-width: 479px) {
+body {
+	padding: 0 !important;
+}
+#home .logo {
+	margin-left: -140px;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+	margin: 0;
+	position: fixed;
+}
+.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+	padding: 0 20px;
+}
+.navbar-inner .brand {
+	margin: 0;
+	padding: 0;
+	display: block;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 50px;
+	color: #FFF;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.navbar-fixed-top .navbar-inner .sosa, .navbar-fixed-bottom .navbar-inner .sosa {
+	margin: 15px 10px 15px 0;
+	float: left;
+}
+.navbar .nav li.home-icon a {
+	padding: 0 10px;
+}
+.navbar .nav li.home-icon a span {
+	float: none;
+}
+.navbar .nav li a {
+	font-weight: 300;
+}
+.navbar .nav li a:hover {
+	background: rgba(255,255,255,0.1);
+}
+.navbar .nav.nav-divider {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+.navbar .nav.nav-divider-right {
+	margin: 0 0 20px 0;
+	padding: 0;
+	border: none;
+}
+.navbar .nav li a i, .navbar .nav li ul, .navbar .social-nav, .navbar form {
+	display: none;
+}
+.thumbnail {
+	margin-bottom: 40px;
+}
+.thumbnail.hover:hover {
+	margin: 0 0 40px 0;
+	padding: 0;
+	background: inherit
+}
+.thumbnail.hover img {
+	margin: 0px auto 10px;
+	border: none !important;
+}
+.sidebar, .sidebar h4 {
+	text-align: center;
+}
+.work-box .sosa, .work-box p {
+	display: none;
+}
+#contact h5 {
+	text-align: center;
+}
+#contact address p {
+	margin: auto;
+	width: 280px;
+}
+#contact .contact-form legend {
+	text-align: center;
+}
+#contact .contact-form input[type=text] {
+	margin: 0 auto 10px;
+	width: 280px;
+	height: 40px;
+	line-height: 40px;
+	float: none;
+}
+#contact .contact-form textarea {
+	margin: 0 auto 10px;
+	min-width: 260px;
+	width: 260px;
+	max-width: 260px;
+	float: none;
+}
+#contact .contact-form button {
+	margin: auto;
+	float: none;
+}
+}
