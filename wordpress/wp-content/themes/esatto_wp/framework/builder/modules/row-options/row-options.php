@@ -13,6 +13,7 @@ class Spyropress_Row_Options extends SpyropressBuilderModule {
 
     public function __construct() {
 
+        $this->path = dirname(__FILE__);
         $this->cssclass = 'row-options';
         $this->description = __( 'Set row options and styling here.', 'spyropress' );
         $this->id_base = 'spyropress_row_options';
@@ -30,7 +31,7 @@ class Spyropress_Row_Options extends SpyropressBuilderModule {
         
         // Fields
         $this->fields = array(
-
+            
             array(
                 'id' => 'show',
                 'type' => 'checkbox',

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SpyroPress Template Hierarchy
  * Extending template hierarchy making it smarter and more flexible. Inspired by hybrid core.
@@ -34,7 +35,7 @@ function spyropress_date_template( $template ) {
     $templates = array();
 
     // If viewing a time-based archive
-    if( is_time() ) {
+    if ( is_time() ) {
 
         // If viewing a minutely archive
         if ( get_query_var( 'minute' ) )
@@ -117,15 +118,15 @@ function spyropress_taxonomy_template( $template ) {
     $term = get_queried_object();
 
     // Remove 'post-format' from the slug
-    $slug = (( 'post_format' == $term->taxonomy ) ? str_replace( 'post-format-', '', $term->slug ) : $term->slug );
+    $slug = ( ( 'post_format' == $term->taxonomy ) ? str_replace( 'post-format-', '',
+        $term->slug ) : $term->slug );
 
     // Return the available templates
     return locate_template( array(
         "taxonomy-{$term->taxonomy}-{$slug}.php",
         "taxonomy-{$term->taxonomy}.php",
         'taxonomy.php',
-        'archive.php'
-    ));
+        'archive.php' ) );
 }
 
 /**

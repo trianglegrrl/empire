@@ -12,7 +12,7 @@ require_once 'version.php';
  */
 add_action( 'tgmpa_register', 'spyropress_register_plugins' );
 function spyropress_register_plugins() {
-    
+
     /**
      * Array of plugin arrays. Required keys are name and slug.
      * If the source is NOT from the .org repo, then source is also required.
@@ -22,18 +22,16 @@ function spyropress_register_plugins() {
         array(
             'name'                  => 'WP-Admin Metro Skin',
             'slug'                  => 'mp6',
-            'required'              => true,
-            'force_activation'      => true,
-            'force_deactivation'    => true
+            'required'              => true
         ),
-        
+
         // Wordpress SEO
         array(
             'name'      => 'WordPress SEO by Yoast',
             'slug'      => 'wordpress-seo',
             'required'  => false,
         ),
-        
+
         // Contact Form 7
         array(
             'name'      => 'Contact Form 7',

@@ -130,7 +130,7 @@ class SpyropressBucket extends SpyropressComponent {
 
     function shortcode_handler( $atts, $content = '' ) {
 
-        if( isset( $atts['id'] ) && $atts['id'] )
+        if ( isset( $atts['id'] ) && $atts['id'] )
             return spyropress_get_the_bucket( $atts['id'] );
     }
 }

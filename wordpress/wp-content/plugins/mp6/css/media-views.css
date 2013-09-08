@@ -276,10 +276,11 @@
 	max-width: 65%;
 }
 
-.media-sidebar .setting input[type="checkbox"] {
-	width: auto;
+.media-sidebar .setting input[type="checkbox"],
+.media-sidebar .field input[type="checkbox"] {
+	width: 16px;
 	float: none;
-	margin-top: 8px;
+	margin: 8px 3px 0;
 	padding: 0;
 }
 
@@ -297,6 +298,7 @@
 
 .media-sidebar .setting input,
 .media-sidebar .setting textarea {
+	margin: 1px;
 	width: 65%;
 	float: right;
 }
@@ -351,8 +353,7 @@
 
 .compat-item .field {
 	float: right;
-	width: 65%;
-	padding-right: 1px;
+	width: 66%;
 }
 
 .compat-item .field input {
@@ -1614,6 +1615,10 @@
 
 	.media-menu .separator {
 		margin: 12px 10px;
+	}
+
+	.media-modal-close {
+		right: 20px;
 	}
 }
 

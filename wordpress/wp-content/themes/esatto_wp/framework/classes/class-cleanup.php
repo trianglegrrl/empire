@@ -84,23 +84,22 @@ class SpyropressCleanup {
         // Remove default gallery css
         add_filter( 'use_default_gallery_style', '__return_false' );
     }
-
+    
     /** URLS Cleanup  **/
+    function enable_relative_urls() {
+        return !( is_admin() || in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) && current_theme_supports( 'relative-urls' );
+    }
+
     function clean_urls() {
 
-        if ( ! in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) &&
-            current_theme_supports( 'relative-urls' ) ) {
+        if ( $this->enable_relative_urls() ) {
 
             $relative_url_filters = array(
                 'bloginfo_url',
-                'theme_root_uri',
-                'stylesheet_directory_uri',
-                'template_directory_uri',
-                'plugins_url',
                 'the_permalink',
                 'wp_list_pages',
                 'wp_list_categories',
-                'wp_nav_menu',
+                'wp_nav_menu_item',
                 'the_content_more_link',
                 'the_tags',
                 'get_pagenum_link',
@@ -113,39 +112,21 @@ class SpyropressCleanup {
                 'script_loader_src',
                 'style_loader_src'
             );
-
+            
             foreach ( $relative_url_filters as $filter ) {
                 add_filter( $filter, array( $this, 'root_relative_url' ) );
             }
         }
     }
-
-    /**
-     * root relative URLs for everything
-     * inspired by http://www.456bereastreet.com/archive/201010/how_to_make_wordpress_urls_root_relative/
-     */
+    
     function root_relative_url( $input ) {
-        // fix for site_url != home_url()
-        if ( ! is_admin() && site_url() != home_url() && stristr( $input, 'wp-includes' ) === false ) {
-            $input = str_replace( site_url(), "", $input );
+        preg_match('|https?://([^/]+)(/.*)|i', $input, $matches);
+        
+        if ( isset( $matches[1] ) && isset( $matches[2] ) && $matches[1] === $_SERVER['SERVER_NAME'] ) {
+            return wp_make_link_relative($input);
         }
-
-        $output = preg_replace_callback( '!(https?://[^/|"]+)([^"]+)?!', create_function
-            ( '$matches', // If full URL is home_url("/") and this isn't a subdir install, return a slash for relative root
-            'if (isset($matches[0]) && $matches[0] === home_url("/") && str_replace("http://", "", home_url("/", "http"))==$_SERVER["HTTP_HOST"]) { return "/";' .
-            // If domain is equal to home_url("/"), then make URL relative
-            '} elseif (isset($matches[0]) && strpos($matches[0], home_url("/")) !== false) { return $matches[2];' .
-            // If domain is not equal to home_url("/"), do not make external link relative
-            '} else { return $matches[0]; };' ), $input );
-
-        // detect and correct for subdir installs
-        if ( $subdir = parse_url( home_url(), PHP_URL_PATH ) ) {
-            if ( substr( $output, 0, strlen( $subdir ) ) == ( substr( $output, strlen( $subdir ), strlen( $subdir ) ) ) ) {
-                $output = substr( $output, strlen( $subdir ) );
-            }
-        }
-
-        return $output;
+        
+        return $input;
     }
 
     /** Clean extra menu classes **/

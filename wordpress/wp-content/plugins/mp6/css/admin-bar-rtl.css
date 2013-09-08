@@ -11,11 +11,6 @@
 	right: 0;
 }
 
-#wpadminbar .quicklinks {
-	border-left: none;
-	border-right: 1px solid transparent;
-}
-
 #wpadminbar .quicklinks ul {
 	text-align: right;
 }
@@ -30,11 +25,6 @@
 
 #wpadminbar .quicklinks .ab-top-secondary > li > a,
 #wpadminbar .quicklinks .ab-top-secondary > li > .ab-empty-item {
-}
-
-#wpadminbar .menupop .ab-sub-wrapper,
-#wpadminbar .shortlink-input {
-	margin: 0 -1px 0 0;
 }
 
 #wpadminbar.ie7 .menupop .ab-sub-wrapper,
@@ -140,16 +130,14 @@
 /*
  * Search
  */
-#wpadminbar #adminbarsearch .adminbar-input {
-	font-family: Tahoma, Arial, Helvetica, sans-serif;
-	padding: 0 24px 0 3px;
-	margin: 0;
+#wpadminbar #adminbarsearch:before {
+	left: auto;
+	right: 5px;
 }
 
-#wpadminbar #adminbarsearch .adminbar-search-input:focus:before,
-#wpadminbar #adminbarsearch .adminbar-input:focus:before {
-	left: auto;
-	right: 3px;
+#wpadminbar #adminbarsearch .adminbar-input {
+	padding: 0 24px 0 3px;
+	margin: 0;
 }
 
 /**

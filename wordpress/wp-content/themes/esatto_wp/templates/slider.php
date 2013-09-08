@@ -13,7 +13,7 @@ if( empty( $slides ) ) return;
                 <div class="detail">
                     <span class="sosa">&#x<?php echo $slide['icon']; ?>;</span>
                     <p class="title"><?php echo $slide['title']; ?> <span><?php echo $slide['sub_title']; ?></span></p>
-                    <p style="text-shadow: 2px 2px 1px rgba(0,0,0,0.4);" class="lead"><?php echo $slide['teaser']; ?></p>
+                    <p class="lead"><?php echo $slide['teaser']; ?></p>
                 </div>
             </li>
             <?php } ?>

@@ -953,6 +953,37 @@ builder.modules = {
                 allow_single_deselect: true
             });
         });
+        
+        // Enable Changer
+		var select_changer = $('select', '.enable_changer'),
+            widget_id = 'widget-' + $('[name="module_id_base"]', b.dialogs.popup_wrapper ).val() + '-1-';
+
+		select_changer.each(function() {
+		     
+             var id = $(this).attr('id').replace( widget_id, '' );
+
+            $(this).find('option').each(function() {
+
+                var val = $(this).val();
+
+				if (val) $('.' + id + '.' + val).hide();
+			});
+
+		});
+
+		select_changer.change(function() {
+
+            var $this = $(this),
+                val = $this.val(),
+                id = $this.attr('id').replace( widget_id, '' );
+
+			// hide
+			$('.' + id).hide();
+
+			// show
+			if (val) $('.' + id + '.' + val).show();
+
+		}).trigger('change');
 
         panelUi.repeater.repeater_sort();
 

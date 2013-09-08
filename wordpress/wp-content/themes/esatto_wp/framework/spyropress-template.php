@@ -18,7 +18,7 @@ function spyropress_get_post_views( $post_id = 0, $singular = 'View', $plural = 
 
     global $post;
 
-    $postID = ( ! empty( $post_id ) && $post_id ) ? $post_id : $post->ID;
+    $postID = ( !empty( $post_id ) && $post_id ) ? $post_id : $post->ID;
 
     $count_key = '_post_views_count';
     $count = get_post_meta( $postID, $count_key, true );
@@ -43,7 +43,7 @@ function spyropress_get_logo( $args = '', $content = '' ) {
         'link' => esc_url( home_url( '/' ) ),
         'alt' => get_bloginfo( 'name' ),
         'title' => get_bloginfo( 'name' ),
-        'show_img' => ! get_setting( 'texttitle', false ),
+        'show_img' => !get_setting( 'texttitle', false ),
         'img' => get_setting( 'logo', false ),
         'brand' => false,
         'before' => '',
@@ -52,7 +52,7 @@ function spyropress_get_logo( $args = '', $content = '' ) {
     $args = wp_parse_args( $args, $defaults );
     extract( $args, EXTR_SKIP );
 
-    if ( ! $brand ) {
+    if ( !$brand ) {
         $before = sprintf( '<%1$s class="%2$s" id="%3$s">', $tag, $class, $id );
         $after = sprintf( '</%1$s>', $tag );
     }
@@ -77,7 +77,7 @@ function spyropress_get_nav_menu( $location = 'primary', $args = '' ) {
         'container_class' => 'navbar',
         'container_id' => 'primary-nav',
         'menu_class' => 'nav',
-        //'walker' => new Bootstrapwp_Walker_Nav_Menu
+        'walker' => new Bootstrapwp_Walker_Nav_Menu
     );
 
     return wp_nav_menu( wp_parse_args( $args, $defaults ) );
@@ -96,7 +96,7 @@ function spyropress_get_the_content( $post_id = '' ) {
     if ( class_exists( 'SpyropressBuilder' ) && spyropress_has_builder_content( $post_id ) ) {
         return spyropress_get_the_builder_content( $post_id );
     }
-    elseif ( is_singular() || get_setting( 'post_content' ) == 'content' ) {
+	elseif ( is_singular() || get_setting( 'post_content' ) == 'content' ) {
         ob_start();
         the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'spyropress' ) );
         return ob_get_clean();
@@ -126,7 +126,7 @@ function spyropress_get_post_meta( $args = '' ) {
     $args = wp_parse_args( $args, $defaults );
     extract( $args );
 
-    if ( ! is_array( $related_post_meta ) )
+    if ( !is_array( $related_post_meta ) )
         $related_post_meta = ( $related_post_meta ) ? explode( ',', $related_post_meta ) : array();
 
     if ( $use_icons )
@@ -268,4 +268,5 @@ function spyropress_related_post() {
 function spyropress_authorbox() {
     spyropress_get_template_part( 'part=templates/author-box' );
 }
+
 ?>

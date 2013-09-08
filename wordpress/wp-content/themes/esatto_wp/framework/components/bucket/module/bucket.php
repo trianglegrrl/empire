@@ -39,12 +39,9 @@ class Spyropress_Module_Bucket extends SpyropressBuilderModule {
     }
 
     function widget( $args, $instance ) {
-
-        // extracting info
-        extract( $args );
         extract( $instance );
         
-        include $this->get_view();
+        spyropress_the_bucket( $bucket );
     }
 
 }

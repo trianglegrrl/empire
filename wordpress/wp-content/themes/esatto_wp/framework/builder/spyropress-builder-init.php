@@ -158,7 +158,6 @@ if ( ! class_exists( 'SpyropressBuilder' ) ) {
              * Styles
              */
             wp_register_style( 'spyropress-builder', framework_assets_css() . 'spyropress-builder.css', '', get_core_version() );
-            wp_enqueue_style( 'spyropress-builder' );
 
             /**
              * Scripts

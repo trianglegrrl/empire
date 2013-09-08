@@ -13,6 +13,7 @@ class Spyropress_Module_Heading extends SpyropressBuilderModule {
 
     public function __construct() {
 
+        $this->path = dirname(__FILE__);
         // Widget variable settings
         $this->cssclass = 'module-heading';
         $this->description = __( 'Add headings into the page layout wherever needed.', 'spyropress' );

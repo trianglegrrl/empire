@@ -20,8 +20,8 @@ add_filter( 'get_the_excerpt', 'spyropress_get_excerpt' );
 
 /** Post Hooks **/
 add_filter( 'post_class', 'spyropress_entry_class' );
-//add_action( 'wp_head', 'spyropress_set_post_views', 25 );
-
+add_action( 'wp_head', 'spyropress_set_post_views', 25 );
+add_action( 'init', 'spyropress_set_post_views_cookies' );
 /** SpyroPress Hooks ********************************************************/
 
 /** Add elements and meta to <head> area **/

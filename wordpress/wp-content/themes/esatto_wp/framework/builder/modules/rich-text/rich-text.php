@@ -13,6 +13,7 @@ class Spyropress_Module_Rich_Text extends SpyropressBuilderModule {
 
     public function __construct() {
 
+        $this->path = dirname(__FILE__);
         // Widget variable settings.
         $this->cssclass = 'simple-text';
         $this->description = __( 'Provides a WYSIWYG editor.', 'spyropress' );

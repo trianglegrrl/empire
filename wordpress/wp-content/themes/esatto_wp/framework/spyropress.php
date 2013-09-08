@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * Spyropress Class - Loads and Initialize the framework.
  *
  * @class Spyropress
- * @version 2.0.0
+ * @version 3.0.0
  */
 class Spyropress {
 
@@ -56,10 +56,10 @@ class Spyropress {
 
         // Language functions and translations setup.
         add_action( 'after_setup_theme', array( $this, 'load_textdomain' ), 3 );
-        
+
         // Load settings
         add_action( 'after_setup_theme', array( $this, 'setup_options' ), 11 );
-        
+
         // Init Components
         add_action( 'after_setup_theme', array( $this, 'init_components' ), 11 );
 
@@ -77,12 +77,12 @@ class Spyropress {
     function autoload( $class ) {
 
         $class = strtolower( preg_replace( '/\B([A-Z])/', '-$1', $class ) );
-        
+
         if ( is_str_starts_with( 'spyropress', $class ) ) {
             $class = str_replace( 'spyropress-', '', $class );
             $class = "class-$class.php";
             $class = $this->framework_path . 'classes/' . $class;
-            
+
             if ( is_readable( $class ) ) {
                 include ( $class );
                 return;
@@ -94,7 +94,7 @@ class Spyropress {
     function setup_globals() {
 
         // Version
-        $this->version = '2.0.0';
+        $this->version = '3.0.0';
 
         // Paths
         $tmpDir = get_template_directory();
@@ -156,12 +156,12 @@ class Spyropress {
         require_once ( 'widgets/spyropress-widget-init.php' );
 
         /** Components ********************************************************/
-        
+
         // builder
         $builder_file = $this->framework_path . 'builder/spyropress-builder-init.php';
         if( is_readable( $builder_file ) )
             require_once $builder_file;
-            
+
         // Allow developers to include files before framework initialize
         do_action( 'spyropress_core_includes' );
     }
@@ -183,7 +183,7 @@ class Spyropress {
         require_once ( 'spyropress-actions.php' ); // Framework hooks used on the front-end
         require_once ( 'spyropress-hooks.php' ); // WordPress Hooks and Filters
         require_once ( 'spyropress-functions.php' ); // Contains functions for various front-end events
-        require_once ( 'spyropress-scripts.php' ); // Enqueue scripts and stylesheets
+        require_once ( $this->template_path . 'includes/spyropress-scripts.php' ); // Enqueue scripts and stylesheets
         require_once ( 'spyropress-image.php' ); // Image retrives and resize functions for the front-end
         require_once ( 'spyropress-comments.php' ); // Load the comments functions
         require_once ( 'components/bootstrap-nav.php' ); // Bootstrap nav fix
@@ -239,10 +239,10 @@ class Spyropress {
             load_textdomain( $this->domain, $this->language_path . "spyropress-admin-$locale.mo" );
         }
     }
-    
+
     /** Init Components **/
     function init_components() {
-                    
+
         // Get theme-supported menus.
         $components = get_theme_support( 'spyropress-components' );
 
@@ -365,7 +365,7 @@ class Spyropress {
         elseif ( $is_IE ) {
 
             $this->add_body_class( 'ie' );
-            
+
             // Version Info
             $browser = $_SERVER['HTTP_USER_AGENT'];
             $browser = substr( "$browser", 25, 8 );
@@ -416,19 +416,19 @@ class Spyropress {
     }
 
     function output_js() {
-        
+
         if( $this->_jquery_ready ) "\n" . '$(document).ready( function() {' . "\n" . $this->_jquery_ready . '});' . "\n";
         if( $this->_window_load ) "\n" . '$(window).load( function() {' . "\n" . $this->_window_load . '});' . "\n";
-        
+
         if( $this->_jquery_ready || $this->_window_load || $this->_inline_js ) {
-        
+
             echo "<!-- SpyroPress JavaScript-->\n";
             echo "<script type=\"text/javascript\">\n";
-            
+
             if( $this->_jquery_ready || $this->_window_load ) {
                 echo ';(function($) {' . $this->_jquery_ready . $this->_window_load . '})(jQuery);' . "\n";
             }
-    
+
             echo "\n" . $this->_inline_js . "\n";
             echo "\n</script>\n";
         }

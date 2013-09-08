@@ -66,7 +66,7 @@ function spyropress_update_options_ajax() {
 
     // Update Theme Options
     $settings = spyropress_update_settings( $options );
-    
+
     $result = update_option( $key, $settings[0] );
 
     // Save Dynamic CSS
@@ -158,10 +158,10 @@ function wp_ajax_spyropress_search_taxonomy() {
 }
 
 function search_custom_post( $wp_type ) {
-    
+
     // Search in title
     add_filter( 'posts_where', 'chosen_search_where', 1, 2 );
-    
+
     // Make WP_Query
     $args = array(
         'post_type' => explode( ',', $wp_type ),
@@ -171,7 +171,7 @@ function search_custom_post( $wp_type ) {
         'posts_per_page' => -1
     );
     $the_query = new WP_Query( $args );
-    
+
     // Loop
     $data = array();
     while ( $the_query->have_posts() ):
@@ -204,32 +204,32 @@ function search_custom_taxonomy( $wp_type ) {
  * Get Google WebFonts
  */
 function wp_ajax_spyropress_get_google_webfonts() {
-    
+
     // Getting from cache
     if( $fonts = get_site_transient( '_spyropress_google_webfonts' ) ) {
         echo $fonts;
-    }    
+    }
     // Getting Fonts
     else {
         $key = 'AIzaSyDJYYVPLT9JaoMPF8G5cFm1YjTZMjknizE';
         $url = sprintf( 'https://www.googleapis.com/webfonts/v1/webfonts?key=%1$s&sort=alpha', $key );
         $response = wp_remote_get( $url, array( 'sslverify' => false ) );
         $fonts = wp_remote_retrieve_body( $response );
-        
+
         if( !empty( $fonts ) ) {
             $fonts = json_decode( $fonts );
             $fonts = json_encode( $fonts->items );
-            
+
             // saving to cache
             set_site_transient( '_spyropress_google_webfonts', $fonts, spyropress_get_seconds() );
-            
+
             echo $fonts;
         }
         else {
             echo '-1';
         }
     }
-    
+
     // Exit
     die();
 }
@@ -237,7 +237,7 @@ function wp_ajax_spyropress_get_google_webfonts() {
 add_action( 'wp_ajax_spyropress_footer_twitter', 'spyropress_footer_twitter' );
 add_action( 'wp_ajax_nopriv_spyropress_footer_twitter', 'spyropress_footer_twitter' );
 function spyropress_footer_twitter() {
-        
+
     $defaults = array(
         'lang' => substr( strtoupper( get_locale() ), 0, 2 ),
         'post_count' => 10,
@@ -249,16 +249,16 @@ function spyropress_footer_twitter() {
         'access_token_secret' => get_setting( 'access_token_secret' )
     );
     extract( $defaults );
-    
+
     $post_count = isset( $_GET['count'] ) ? $_GET['count'] : 10;
-    
+
     if( ! $consumer_key || ! $consumer_secret || ! $access_token || ! $access_token_secret ) {
         echo 'No oAuth setting provided.';
         exit;
     };
     $tweets = array();
     if( false === ( $tweets = get_site_transient( $key ) ) ) {
-        
+
         require_once 'utilities/twitteroauth/twitteroauth.php';
         $twitterConnection = new TwitterOAuth( $consumer_key, $consumer_secret, $access_token, $access_token_secret );
     	$tweets = $twitterConnection->get(
@@ -268,15 +268,15 @@ function spyropress_footer_twitter() {
     			    'count'           => $post_count
     			  )
     	);
-        
+
     	if($twitterConnection->http_code != 200) {
     		$tweets = get_site_transient( $key );
     	}
-        
+
         // Cache
         set_transient( $key, $tweets, spyropress_get_seconds( 0.1 ) );
     }
-    
+
     echo json_encode( $tweets );
     exit;
 }

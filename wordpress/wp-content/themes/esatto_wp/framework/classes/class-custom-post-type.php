@@ -67,7 +67,7 @@ class SpyropressCustomPostType {
         if ( empty( $this->meta_boxes ) ) return;
 
         // Listen for post save
-        add_action( 'save_post', array( $this, 'save_post' ), 1, 2 );
+        add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
 
         foreach ( $this->meta_boxes as $box )
             add_meta_box(
@@ -301,11 +301,13 @@ class SpyropressCustomPostType {
         // Deny the wordpress ajax
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) return;
 
+        // Check
+        if( $this->slug != $_POST['post_type'] ) return;
+        
         // verify post is not a revision
         if ( wp_is_post_revision( $post_ID ) ) return;
-
-        // Check
-        if( get_post_type( $post_ID ) !== $this->slug ) return;
+        
+        clean_post_cache( $post_ID );
 
         // Check nonce
         if ( isset( $_POST['security'] ) && ! wp_verify_nonce( $_POST['security'], 'spyropress_metabox_nonce' ) ) return;
@@ -319,7 +321,6 @@ class SpyropressCustomPostType {
 
             // saving new info
             if ( ! empty( $settings ) ) {
-
                 if ( $meta_key ) {
                     update_post_meta( $post_ID, $meta_key, $settings );
                 }

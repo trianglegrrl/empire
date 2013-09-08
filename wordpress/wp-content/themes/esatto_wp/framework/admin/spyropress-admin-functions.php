@@ -70,44 +70,6 @@ function add_notice_section( $heading = '' ) { add_message_section( $heading, 'n
 
 /** Admin SpyroPress Pages Functions *******************************************/
 
-/** Dashboard **/
-
-// Get Spyropress RSS blog feed
-function spyropress_dashboard_news() {
-    global $spyropress;
-
-    wp_widget_rss_output( $spyropress->rss_feed, array(
-        'items' => 5,
-        'show_author' => 0,
-        'show_date' => 1,
-        'show_summary' => 1
-    ) );
-}
-
-// Get Spyropress RSS twitter feed
-function spyropress_dashboard_twitter() {
-    global $spyropress;
-
-    wp_widget_rss_output( $spyropress->twitter_feed, array(
-        'items' => 5,
-        'show_author' => 0,
-        'show_date' => 1,
-        'show_summary' => 0
-    ) );
-}
-
-// Get Spyropress RSS forum feed
-function spyropress_dashboard_forum() {
-    global $spyropress;
-
-    wp_widget_rss_output( $spyropress->forum_feed, array(
-        'items' => 5,
-        'show_author' => 0,
-        'show_date' => 1,
-        'show_summary' => 1
-    ) );
-}
-
 // Spyropress Badge
 function get_spyropress_badge( $class = '' ) {
     printf( '<div class="wp-badge%2$s">' . __( 'Version %1$s', 'spyropress' ) . '</div>', spyropress_get_version(), ( $class ) ? ' ' . $class : '' );
@@ -480,7 +442,7 @@ function spyropress_validate_setting( $value, $type, $field_id, $section ) {
             $raw_value = $value[$i];
             foreach( $section['fields'] as $field ) {
 
-                if( isset( $field['id'] ) ) {
+                if( isset( $field['id'] ) && isset( $raw_value[$field['id']] ) ) {
                     $key = trim( $field['id'] );
                     $type = $field['type'];
                     $new_value = $raw_value[$key];

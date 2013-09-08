@@ -140,13 +140,15 @@
 			var select_changer = $('select', '.enable_changer');
 
 			select_changer.each(function() {
+			     
+                 var id = $(this).attr('id');
 
                 $(this).find('option').each(function() {
 
                     var $this = $(this),
                         val = $this.val();
 
-					if (val) $('.' + $this.attr('id') + '.' + val).hide();
+					if (val) $('.' + id + '.' + val).hide();
 				});
 
 			});
@@ -265,22 +267,27 @@
 
 				wp.media.editor.send.attachment = function(props, attachment) {
 
-					var $fieldImg = $('#' + field_id + '_image'),
-                        img = ( 'x-icon' == attachment.subtype) ? attachment.url : attachment.sizes[props.size].url;
-
-					btnContent = '';
-					btnContent += '<div class="image-wrap"><img src="' + img + '" alt="" /></div>';
-					btnContent += '<a href="javascript:(void);" class="remove-media">' + panelUi.resources.buttonRemoveMedia + '</span></a>';
-                    
-                    
-                    $field.val(img);
-					$field.parent('div').append('<div style="display:none" class="screenshot" id="' + field_id + '_image" />');
-
-                    $fieldImg.remove();
-					$fieldImg.append(btnContent).fadeIn('slow');
-
-					// restore original
-					wp.media.editor.send.attachment = clone;
+					
+					if( 'video' != attachment.type ) {
+                        var img = ( 'x-icon' == attachment.subtype) ? attachment.url : attachment.sizes[props.size].url;
+    
+    					btnContent = '';
+    					btnContent += '<div class="image-wrap"><img src="' + img + '" alt="" /></div>';
+    					btnContent += '<a href="javascript:(void);" class="remove-media">' + panelUi.resources.buttonRemoveMedia + '</span></a>';
+                        
+                        
+                        $field.val(img);
+    					$field.parent('div').append('<div style="display:none" class="screenshot" id="' + field_id + '_image" />');
+                        
+                        $fieldImg = $('#' + field_id + '_image');
+    					$fieldImg.append(btnContent).fadeIn('slow');
+    
+    					// restore original
+    					wp.media.editor.send.attachment = clone;
+                    }
+                    else if( 'video' == attachment.type ) {
+                        $field.val( attachment.url );
+                    }
 				};
 
 				wp.media.editor.open($this);

@@ -110,6 +110,36 @@ class SpyropressThemeUpdater {
             } // END UPDATE HERE
         }
     }
+    
+    function download_url( $url, $timeout = 300 ) {
+        //WARNING: The file is not automatically deleted, The script must unlink() the file.
+        if ( ! $url )
+            return new WP_Error( 'http_no_url', __( 'Invalid URL Provided.', 'spyropress' ) );
+
+        $tmpfname = wp_tempnam( $url );
+        if ( ! $tmpfname )
+            return new WP_Error( 'http_no_file', __( 'Could not create Temporary file.', 'spyropress' ) );
+
+        $response = wp_remote_get( $url, array(
+            'timeout' => $timeout,
+            'stream' => true,
+            'filename' => $tmpfname
+        ) );
+
+        if ( is_wp_error( $response ) ) {
+            unlink( $tmpfname );
+            return $response;
+        }
+
+        if ( 200 != wp_remote_retrieve_response_code( $response ) ) {
+            unlink( $tmpfname );
+            $message = $response['headers']['message'];
+            $message = ( $message ) ? $message : wp_remote_retrieve_response_message( $response );
+            return new WP_Error( 'http_404', trim( $message ) );
+        }
+        
+        return $tmpfname;
+    }
 }
 
 ?>

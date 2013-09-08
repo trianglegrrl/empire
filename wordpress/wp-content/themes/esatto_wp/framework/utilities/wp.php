@@ -65,6 +65,7 @@ function get_page_query() {
 /**
  * Check ShortCode existance in current post content
  */
+/*
 function has_shortcode( $shortcode = '' ) {
 
     // if no short code was provided, return false
@@ -79,7 +80,7 @@ function has_shortcode( $shortcode = '' ) {
     // if not found
     return false;
 }
-
+ */
 /**
  * Get meta value using get_the_ID()
  */
@@ -102,8 +103,8 @@ function spyropress_remove_formatting( $content ) {
 
 function spyropress_pass() {
     the_post_thumbnail();
-    paginate_links();
     posts_nav_link();
+    paginate_links();
     next_posts_link();
     previous_posts_link();
     

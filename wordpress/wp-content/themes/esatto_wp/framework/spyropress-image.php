@@ -194,7 +194,7 @@ function get_image( $args = array() ) {
         'class' => '',
         'alt' => '',
         'title' => '',
-        
+
         // anchor attributes
         'href' => 'lightbox',
         'rel' => 'lightbox',

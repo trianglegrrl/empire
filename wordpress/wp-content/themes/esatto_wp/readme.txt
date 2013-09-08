@@ -1,1 +1,1 @@
-SpyroPress Framework
+SpyroPress Esatto - 1.2

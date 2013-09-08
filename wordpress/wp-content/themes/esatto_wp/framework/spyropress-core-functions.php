@@ -32,7 +32,7 @@ function token_repalce( $tmpl, $values ) {
 
 /**
  * Get Setting
- * 
+ *
  * Get setting value from registered option array and clean it
  */
 function get_setting( $item_id = '', $default = '', $is_array = false, $offset = -1 ) {
@@ -47,7 +47,7 @@ function get_setting_array( $item_id = '', $default = '', $echo = false, $offset
 
 /**
  * Get option value
- * 
+ *
  * Functions get the option value from registered option array() and clean it
  */
 function get_option_value( $item_id, $default, $echo, $is_array, $offset ) {
@@ -102,7 +102,7 @@ function get_option_value( $item_id, $default, $echo, $is_array, $offset ) {
  * Custom Stripslashes
  */
 function spyropress_stripslashes( $input ) {
-    
+
     if ( is_array( $input ) ) {
         foreach ( $input as &$val ) {
             if ( is_array( $val ) ) {

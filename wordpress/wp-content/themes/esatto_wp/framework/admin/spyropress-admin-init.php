@@ -85,7 +85,7 @@ class SpyropressAdmin {
             'ui/custom-post.php',
 
             /** Theme and Framework Settings **/
-            'spyropress-settings-theme.php'
+            template_path() . 'includes/spyropress-settings-theme.php'
             //'dump/option.sample.settings.php'
         );
 
@@ -184,7 +184,7 @@ class SpyropressAdmin {
         wp_enqueue_style( 'jquery.aristo' );
         wp_enqueue_style( 'jquery.plugins' );
         wp_enqueue_style( 'spyropress.admin' );
-        //wp_enqueue_style( 'spyropress.admin.new' );
+        wp_enqueue_style( 'spyropress-builder' );
     }
 
     /**
@@ -230,15 +230,15 @@ class SpyropressAdmin {
                 'isactive' => true,
                 'hidden' => false
             );
+            
+            /*$this->admin_menus['spyropress-themes'] = array(
+                'page_title' => __( 'More Themes', 'spyropress' ),
+                'menu_title' => __( 'More Themes', 'spyropress' ),
+                'page_file' => 'page-more-themes.php',
+                'isactive' => true,
+                'hidden' => false
+            );*/
         }
-
-        $this->admin_menus['spyropress-themes'] = array(
-            'page_title' => __( 'More Themes', 'spyropress' ),
-            'menu_title' => __( 'More Themes', 'spyropress' ),
-            'page_file' => 'page-more-themes.php',
-            'isactive' => false,
-            'hidden' => false
-        );
     }
 
     /**

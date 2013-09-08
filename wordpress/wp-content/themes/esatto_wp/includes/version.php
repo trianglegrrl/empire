@@ -2,7 +2,7 @@
 
 /**
  * Theme Meta Info for internal usage
- * 
+ *
  * Dont Mess with it.
  */
 add_action('spyropress_init', 'spyropress_setup_theme');
@@ -11,8 +11,8 @@ function spyropress_setup_theme() {
     
     $spyropress->internal_name = 'esatto';
     $spyropress->theme_name = 'Esatto';
-    $spyropress->theme_version = '1.0';
-    
+    $spyropress->theme_version = '1.2';
+
     $spyropress->row_class = 'row';
 }
 ?>

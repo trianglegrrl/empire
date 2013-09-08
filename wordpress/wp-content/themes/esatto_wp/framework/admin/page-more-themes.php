@@ -5,6 +5,10 @@
  *
  * Retrieve more themes from ThemeForest account.
  */
+
+function sort_items_by_sales( $a, $b ) {
+    return strtotime( $b->uploaded_on ) - strtotime( $a->uploaded_on );
+}
 global $spyropress;
 
 $url = sprintf( 'http://marketplace.envato.com/api/edge/new-files-from-user:%s,themeforest.json', get_themeforest_username() );
@@ -16,6 +20,7 @@ $data = (array)json_decode( wp_remote_retrieve_body( $data ) );
     <?php
         if ( !empty( $data ) ) {
             $items = $data['new-files-from-user'];
+            usort( $items, 'sort_items_by_sales' );
     ?>
     <div class="teaser-text">
         <?php printf( __( 'Currently Listing %d themes on themeforest.', 'spyropress' ), count( $items ) ); ?>

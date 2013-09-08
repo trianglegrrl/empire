@@ -16,7 +16,7 @@
  * Appends various location information and uses those files if available in your theme folder
  */
 function spyropress_get_template_part( $args ) {
-    
+
     // Defaults
     $defaults = array(
         'part' => false
@@ -38,7 +38,7 @@ function spyropress_get_template_part( $args ) {
 
     $templates = $part . '-' . implode( '.php,' . $part . '-', $templates ) . '.php,' . $part . '.php';
     $templates = explode( ',', $templates );
-    
+
     // locate and load template
     locate_template( $templates, true, false );
 }
@@ -146,8 +146,14 @@ function spyropress_set_post_views( $post_id = 0 ) {
             $count++;
             update_post_meta( $postID, $count_key, $count );
         }
-        setcookie( 'spyropress_post_view_done', '1', time() + 360 );
     }
+}
+
+function spyropress_set_post_views_cookies() {
+    
+    // only run on posts and not pages
+    if ( !isset( $_COOKIE['spyropress_post_view_done'] ) && is_single() && ! is_page() )
+        setcookie( 'spyropress_post_view_done', '1', time() + 360 );
 }
 
 /**
@@ -230,6 +236,7 @@ function spyropress_query_generator( $atts, $content = null ) {
         'row_class' => get_row_class( true ),
         'column_class' => '',
         'columns' => 1,
+        'pagination' => false
     );
     $atts = wp_parse_args( $atts, $default );
 
@@ -299,7 +306,7 @@ function spyropress_query_generator( $atts, $content = null ) {
             $output .= '</div>';
 
         wp_reset_query();
-        
+
         // get pagination for query if enabled
         $pagination = '';
         if ( $atts['pagination'] )
@@ -344,9 +351,9 @@ function display_meta_title() {
 
     // If 3rd party plugin is in use, let it manage titles as they does great job!
     if (
-        class_exists( 'All_in_One_SEO_Pack' ) || 
+        class_exists( 'All_in_One_SEO_Pack' ) ||
         class_exists( 'Headspace_Plugin' ) ||
-        class_exists( 'WPSEO_Admin' ) || 
+        class_exists( 'WPSEO_Admin' ) ||
         class_exists( 'WPSEO_Frontend' )
     ) {
         wp_title( '', true, 'right' );
